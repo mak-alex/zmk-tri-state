@@ -70,9 +70,6 @@ static void reset_timer(int32_t timestamp, struct active_tri_state *tri_state) {
 void trigger_end_behavior(struct active_tri_state *si) {
     struct zmk_behavior_binding_event event = {
         .position = si->position,
-#if IS_ENABLED(CONFIG_ZMK_SPLIT)
-        .source = si->source,
-#endif
     };
 
     zmk_behavior_queue_add(&event, si->config->end_behavior, true, si->config->tap_ms);
