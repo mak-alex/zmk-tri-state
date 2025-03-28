@@ -108,6 +108,9 @@ static int new_tri_state(struct zmk_behavior_binding_event *event,
         struct active_tri_state *const ref_tri_state = &active_tri_states[i];
         if (!ref_tri_state->is_active) {
             ref_tri_state->position = event->position;
+#if IS_ENABLED(CONFIG_ZMK_SPLIT)
+            ref_tri_state->source = behavior_device_from_position(event->position);
+#endif
             ref_tri_state->config = config;
             ref_tri_state->is_active = true;
             ref_tri_state->is_pressed = false;
